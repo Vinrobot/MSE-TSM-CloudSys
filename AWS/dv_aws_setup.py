@@ -73,4 +73,6 @@ frontend = ec2.create_instances(
 )
 
 print('Created frontend instance')
-print('Done!')
+
+frontendIp = frontend[0].public_ip_address
+print('Application deployed on: http://' + frontendIp + ':3000')

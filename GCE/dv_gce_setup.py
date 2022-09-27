@@ -365,4 +365,7 @@ frontend_instance = create_instance(
 )
 
 print("Frontend instance created.")
-print("Done!")
+
+# Get the external IP address of the frontend instance
+frontendIp = frontend_instance.network_interfaces[0].access_configs[0].nat_i_p
+print('Application deployed on: http://' + frontendIp + ':3000')
