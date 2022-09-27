@@ -339,12 +339,10 @@ backend_instance = create_instance(
     external_access=True,
     tags=["backend"],
     boot_script=f"""#!/bin/bash
-    echo "export BUCKET_NAME={BUCKET_NAME}" > /etc/environment
-    echo "export AWS_KEY={S3_KEY}" >> /etc/environment
-    echo "export AWS_SECRET={S3_SECRET}" >> /etc/environment
-    echo "export IS_GOOGLE=1" >> /etc/environment
-    pm2 resurrect
-    pm2 restart web --update-env
+    echo "export BUCKET_NAME={BUCKET_NAME}" > /home/ec2-user/SatNOGS-Tracker-Cloud/.env
+    echo "export AWS_KEY={S3_KEY}" >> /home/ec2-user/SatNOGS-Tracker-Cloud/.env
+    echo "export AWS_SECRET={S3_SECRET}" >> /home/ec2-user/SatNOGS-Tracker-Cloud/.env
+    echo "export IS_GOOGLE=1" >> /home/ec2-user/SatNOGS-Tracker-Cloud/.env
     """
 )
 
@@ -362,9 +360,7 @@ frontend_instance = create_instance(
     external_access=True,
     tags=["frontend"],
     boot_script=f"""#!/bin/bash
-    echo "export BACKEND_URL=http://{backend_ip}:8080" > /etc/environment
-    pm2 resurrect
-    pm2 restart web --update-env
+    echo "export BACKEND_URL=http://{backend_ip}:8080" > /home/ec2-user/SatNOGS-Tracker-Cloud/.env
     """
 )
 
