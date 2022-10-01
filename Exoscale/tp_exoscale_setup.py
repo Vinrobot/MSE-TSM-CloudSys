@@ -57,9 +57,9 @@ backend_instance = exo.compute.create_instance(
     user_data=f"""#cloud-boothook
 #!/bin/bash
 cd /home/ubuntu/SatNOGS-Tracker-Cloud
-echo "export BUCKET_NAME={bucket.name}" > .env
-echo "export AWS_KEY={S3_KEY}" >> .env
-echo "export AWS_SECRET={S3_SECRET}" >> .env
+echo "BUCKET_NAME={bucket.name}" > .env
+echo "AWS_KEY={S3_KEY}" >> .env
+echo "AWS_SECRET={S3_SECRET}" >> .env
 node backend.js"""
 )
 
@@ -79,6 +79,6 @@ frontend_instance = exo.compute.create_instance(
     user_data=f"""#cloud-boothook
 #!/bin/bash
 cd /home/ubuntu/SatNOGS-Tracker-Cloud
-echo "export BACKEND_URL=http://{IPV4_BACKEND}:8080" > .env
+echo "BACKEND_URL=http://{IPV4_BACKEND}:8080" > .env
 node web.js"""
 )
