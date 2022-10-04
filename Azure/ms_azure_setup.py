@@ -14,7 +14,9 @@ SSH_KEY = "ssh-rsa ..." #This info has been removed from the file
 
 SUBSCRIPTION_ID = 'd60cf023-6a1f-4ac0-9dc9-f611d738567d'
 RESOURCE_GROUP = "app_g12"
-SSH_USERNAME = "ubuntu"
+
+SSH_USERNAME = "azureuser"
+PASSWORD = ""
 
 TEMPLATE_BACK = f"/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP}/providers/Microsoft.Compute/images/{RESOURCE_GROUP}-BACK-image"
 TEMPLATE_FRONT = f"/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP}/providers/Microsoft.Compute/images/{RESOURCE_GROUP}-FRONT-image"
@@ -79,6 +81,7 @@ def create_virtual_machine(nic_id, vm_name, username, password, user_data=None, 
             "os_profile": {
                 "computer_name": vm_name,
                 "admin_username": username,
+                "admin_password": password,
                 "custom_data": user_data,
                 "linux_configuration": {
                     "disable_password_authentication": True,
@@ -217,6 +220,7 @@ runcmd:
  - echo "BACKEND_URL=http://{ip_address_front.ip_address}:8080" > /home/{SSH_USERNAME}/SatNOGS-Tracker-Cloud/.env
 '''
 
+
 print(f"Creating virtual machine {front_vm_name} ...")
-create_virtual_machine(network_interface_front.id, front_vm_name, SSH_USERNAME, front_user_data, TEMPLATE_BACK)
+create_virtual_machine(network_interface_front.id, front_vm_name, SSH_USERNAME, PASSWORD , front_user_data, TEMPLATE_BACK)
 print(f"Virtual machine {front_vm_name} has been Created")
