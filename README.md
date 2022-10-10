@@ -45,3 +45,12 @@ On startup, the second layer fetches orbital information(TLE) from NORAD and gro
 
 ## Conclusion
 
+It was really interesting to try the different cloud providers. Having tries two of them per group member gave us some insight about the differences and similarities between IaaSes.
+
+We were happy to see that almost all of the IaaS that we used implemented the S3 API for the object storage, which let us use the same code for all deployments with minimal changes. However, SwitchEngine doesn't provide an S3 Object Storage, and Microsoft Azure have their own API and implementation.
+
+Creating instances was not too hard but in some IaaS the interface wasn't really easy to use, especially the network options.
+
+This practical work gave us some insight on how to deploy an application using an IaaS, and how to implement them on future projects.
+
+
