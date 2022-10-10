@@ -2,7 +2,8 @@ from azure.identity import AzureCliCredential
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.compute import ComputeManagementClient
-from azure.mgmt.network.v2020_06_01.models import StorageManagementClient, NetworkSecurityGroup, SecurityRule, SecurityRuleAccess, SecurityRuleDirection, SecurityRuleProtocol
+from azure.mgmt.storage import StorageManagementClient
+from azure.mgmt.network.v2020_06_01.models import NetworkSecurityGroup, SecurityRule, SecurityRuleAccess, SecurityRuleDirection, SecurityRuleProtocol
 from base64 import b64encode
 import re
 
