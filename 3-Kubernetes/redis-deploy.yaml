@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    component: redis
+    app: todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: redis
+      app: todo
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        component: redis
+        app: todo
+    spec:
+      containers:
+      - name: redis-container
+        image: redis
+        ports:
+        - containerPort: 6379
+        resources:
+          limits:
+            cpu: 100m
+        args:
+        - redis-server
+        - --requirepass ccp2
+        - --appendonly yes
