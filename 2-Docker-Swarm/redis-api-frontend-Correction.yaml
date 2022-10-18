@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+    frontend:
+        container_name: frontend
+        image: 'icclabcna/ccp2-k8s-todo-frontend'
+        ports:
+            - '8082:8080'
+        environment: 
+            - API_ENDPOINT_URL=http://api:8081
+        depends_on:
+            - api
+            
+    api:
+        container_name: api
+        image: 'icclabcna/ccp2-k8s-todo-api'
+        environment:
+            - REDIS_ENDPOINT=redis
+            - REDIS_PWD=ccp2
+        depends_on:
+            - redis
+            
+    redis:
+        container_name: redis
+        image: redis
+        command: "redis-server --requirepass ccp2 --appendonly yes"
+        restart: on-failure
+
+    
